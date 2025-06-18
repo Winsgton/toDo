@@ -1,21 +1,11 @@
 <!-- Exemplo de item de tarefa -->
 <div class="task-item">
-  <mat-slide-toggle [checked]="task.done"></mat-slide-toggle>
+  <mat-slide-toggle [checked]="task.done" (change)="onToggleComplete()"></mat-slide-toggle>
   <span class="task-text" [class.done]="task.done">{{ task.title }}</span>
-  <button mat-icon-button >
+  <button mat-icon-button (click)="onEdit()">
     <mat-icon>edit</mat-icon>
   </button>
   <button mat-icon-button color="warn" (click)="onDelete()">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
-
-<!-- <div class="task-item">
-  <mat-slide-toggle></mat-slide-toggle>
-  <mat-form-field class="inline-edit">
-    <input matInput placeholder="teste 3" />
-  </mat-form-field>
-  <button mat-icon-button color="primary">
-    <mat-icon>done</mat-icon>
-  </button>
-</div> -->

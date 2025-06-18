@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -32,35 +32,54 @@ import { CommonModule } from '@angular/common';
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css',
 })
-export class TaskAddComponent implements OnInit {
+export class TaskAddComponent implements OnInit, OnChanges {
   @Input() task: Task | null = null;
+  @Output() taskSubmit = new EventEmitter<Partial<Task>>(); 
 
   taskForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
+  /* inicia o formulário */
   ngOnInit(): void {
     this.initForm();
   }
 
-  /*inicia formulário*/
+  /* detecta mudança/alterações */
+ ngOnChanges(changes: SimpleChanges): void {
+    if (this.task && changes['task']) {
+      this.taskForm.patchValue({
+        title: this.task.title,
+        done: this.task.done
+      });
+    }
+  }
+
+  /* inicia formulário reativo */
   private initForm(): void {
     this.taskForm = this.fb.group({
       title: [
-        this.task?.title || '',
+        this.task?.title || '' ,
         [Validators.required, Validators.minLength(3)],
       ],
       done: [this.task?.done || false],
     });
   }
 
-  /*envio do formulário*/
+  /* envio do formulário */
   onSubmit(): void {
     if (this.taskForm.valid) {
-      const formValue = this.taskForm.value;
-
-      this.taskForm.reset();
-    } else {
+      const taskData: Partial<Task> = {
+        id: this.task?.id,
+        ...this.taskForm.value
+      };
+      
+      this.taskSubmit.emit(taskData);
+      this.taskForm.reset({
+        title: '',
+        done: false
+      });
     }
   }
+
 }

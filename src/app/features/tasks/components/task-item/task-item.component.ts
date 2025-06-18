@@ -29,8 +29,19 @@ export class TaskItemComponent {
   @Output() toggleComplete = new EventEmitter<number>();
 
 
-  /*aciona evento de saída: exclusão*/
+  /* aciona evento de saída: exclusão */
   onDelete(): void {
     this.delete.emit(this.task.id);
+  }
+
+  /* aciona o evento de saída: tarefa feita [done] */
+  onToggleComplete(): void {
+    console.log('1');
+    this.toggleComplete.emit(this.task.id);
+  }
+
+  /* aciona o evento de saída: edição */
+  onEdit(): void {
+    this.edit.emit(this.task);
   }
 }

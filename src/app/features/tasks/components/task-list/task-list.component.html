@@ -7,7 +7,7 @@
     <p>Controle de tarefas...</p>
 
     <!-- Criação de novas tarefas -->
-    <app-task-add></app-task-add>
+    <app-task-add [task]="editingTask" (taskSubmit)="onTaskSubmit($event)"></app-task-add>
   </mat-card-content>
 </mat-card>
 
@@ -24,12 +24,8 @@
     <!--componente do item de cada tarefa-->
 
     <div *ngFor="let task of tasks">
-      <app-task-item
-        [task]="task"
-        (edit)="(null)"
-        (delete)="onDeleteTask($event)"
-        (toggleComplete)="(null)"
-      >
+      <app-task-item [task]="task" (edit)="onEditTask($event)" (delete)="onDeleteTask($event)"
+        (toggleComplete)="onToggleComplete($event)">
       </app-task-item>
     </div>
   </div>
