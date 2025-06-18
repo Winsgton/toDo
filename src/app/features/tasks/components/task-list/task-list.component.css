@@ -1,0 +1,47 @@
+/* Card principal */
+.task-card {
+  max-width: 70rem;
+  margin: 15px auto;
+  padding: 15px;
+}
+
+/* Faz o input ocupar toda a largura disponível */
+.full-width {
+  flex: 1;
+}
+
+/* Lista de tarefas */
+.task-list {
+  margin-top: 20px;
+}
+
+/* Cada item de tarefa */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Texto da tarefa */
+.task-text {
+  flex: 1;
+}
+
+/* Tarefa concluída com risco */
+.task-text.done {
+  text-decoration: line-through;
+}
+
+/* Campo de edição inline */
+.inline-edit {
+  flex: 1;
+}
+
+
+/* formatação de sem tarefa */
+.no-tasks {
+    text-align: center;
+    padding: 32px;
+    color: #666;
+}

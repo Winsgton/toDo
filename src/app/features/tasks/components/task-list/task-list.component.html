@@ -1,0 +1,36 @@
+<!-- Card principal de cadastro de tarefas -->
+<mat-card class="task-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Lista de tarefas</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Controle de tarefas...</p>
+
+    <!-- Criação de novas tarefas -->
+    <app-task-add></app-task-add>
+  </mat-card-content>
+</mat-card>
+
+<!-- Card principal de cadastro de tarefas -->
+<mat-card class="task-card" appearance="outlined">
+  <!-- Lista de tarefas -->
+  <div class="task-list">
+    <p>Tarefas:</p>
+
+    <div *ngIf="tasks.length === 0" class="no-tasks">
+      <mat-icon>assignment</mat-icon>
+      <p>Nenhuma tarefa encontrada. Que tal criar uma nova?</p>
+    </div>
+    <!--componente do item de cada tarefa-->
+
+    <div *ngFor="let task of tasks">
+      <app-task-item
+        [task]="task"
+        (edit)="(null)"
+        (delete)="onDeleteTask($event)"
+        (toggleComplete)="(null)"
+      >
+      </app-task-item>
+    </div>
+  </div>
+</mat-card>

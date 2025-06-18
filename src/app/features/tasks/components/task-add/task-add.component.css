@@ -1,0 +1,11 @@
+/* Formulário para adicionar nova tarefa */
+.add-task-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Faz o input ocupar toda a largura disponível */
+.full-width {
+  flex: 1;
+}
