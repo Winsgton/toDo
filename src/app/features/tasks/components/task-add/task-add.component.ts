@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -31,10 +31,11 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskAddComponent implements OnInit, OnChanges {
   @Input() task: Task | null = null;
-  @Output() taskSubmit = new EventEmitter<Partial<Task>>(); 
+  @Output() taskSubmit = new EventEmitter<Partial<Task>>();
 
   taskForm!: FormGroup;
 
@@ -73,7 +74,7 @@ export class TaskAddComponent implements OnInit, OnChanges {
         id: this.task?.id,
         ...this.taskForm.value
       };
-      
+
       this.taskSubmit.emit(taskData);
       this.taskForm.reset({
         title: '',

@@ -1,4 +1,4 @@
-<!-- Input de nova tarefa -->
+<!-- Input de nova tarefa / alteração de tarefa -->
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="add-task-form">
   <mat-form-field class="full-width">
     <input matInput formControlName="title" placeholder="Nova tarefa" />
@@ -6,5 +6,6 @@
       Por favor, insira uma tarefa válida (campo necessariamente precisa de 3 ou mais caracteres)
     </mat-error>
   </mat-form-field>
-  <button mat-flat-button color="primary" type="submit">{{ task?.id ? 'Atualizar' : 'Adicionar' }}</button>
+  <button mat-flat-button color="primary" type="submit" [disabled]="taskForm.invalid">
+    {{ task?.id ? 'Atualizar' : 'Adicionar' }}</button>
 </form>

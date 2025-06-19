@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,9 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../../../core/models/task.model';
+import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
 
 @Component({
   selector: 'app-task-item',
+  standalone: true,
   imports: [
     MatSlideToggleModule,
     MatIconModule,
@@ -17,10 +19,12 @@ import { Task } from '../../../../core/models/task.model';
     MatButtonModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    TruncatePipe
   ],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskItemComponent {
   @Input() task!: Task;

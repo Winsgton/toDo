@@ -6,13 +6,14 @@
   <mat-card-content>
     <p>Controle de tarefas...</p>
 
-    <!-- Criação de novas tarefas -->
+    <!-- Criação/alteração de novas tarefas -->
     <app-task-add [task]="editingTask" (taskSubmit)="onTaskSubmit($event)"></app-task-add>
   </mat-card-content>
 </mat-card>
 
 <!-- Card principal de cadastro de tarefas -->
-<mat-card class="task-card" appearance="outlined">
+<mat-card class="task-card" appearance="outlined" *ngIf="(tasks$ | async) as tasks">
+
   <!-- Lista de tarefas -->
   <div class="task-list">
     <p>Tarefas:</p>
@@ -21,9 +22,9 @@
       <mat-icon>assignment</mat-icon>
       <p>Nenhuma tarefa encontrada. Que tal criar uma nova?</p>
     </div>
-    <!--componente do item de cada tarefa-->
 
-    <div *ngFor="let task of tasks">
+    <!--componente do item de cada tarefa-->
+    <div *ngFor="let task of tasks$ | async">
       <app-task-item [task]="task" (edit)="onEditTask($event)" (delete)="onDeleteTask($event)"
         (toggleComplete)="onToggleComplete($event)">
       </app-task-item>

@@ -1,7 +1,7 @@
 <!-- Exemplo de item de tarefa -->
 <div class="task-item">
   <mat-slide-toggle [checked]="task.done" (change)="onToggleComplete()"></mat-slide-toggle>
-  <span class="task-text" [class.done]="task.done">{{ task.title }}</span>
+  <span class="task-text" [class.done]="task.done">{{ task.title | truncate:30 }}</span>
   <button mat-icon-button (click)="onEdit()">
     <mat-icon>edit</mat-icon>
   </button>
