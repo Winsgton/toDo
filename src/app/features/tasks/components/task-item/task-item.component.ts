@@ -8,11 +8,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../../../core/models/task.model';
 import { TruncatePipe } from '../../../../utils/pipes/truncate.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
   imports: [
+    CommonModule,
     MatSlideToggleModule,
     MatIconModule,
     MatDividerModule,

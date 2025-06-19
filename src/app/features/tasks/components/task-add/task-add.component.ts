@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Task } from '../../../../core/models/task.model';
 import { CommonModule } from '@angular/common';
+import { AutofocusDirective } from '../../../../utils/directives/autofocus.directive';
 
 @Component({
   selector: 'app-task-add',
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
+    AutofocusDirective
   ],
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css',

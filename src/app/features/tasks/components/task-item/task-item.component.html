@@ -1,11 +1,16 @@
 <!-- Exemplo de item de tarefa -->
 <div class="task-item">
   <mat-slide-toggle [checked]="task.done" (change)="onToggleComplete()"></mat-slide-toggle>
-  <span class="task-text" [class.done]="task.done">{{ task.title | truncate:30 }}</span>
-  <button mat-icon-button (click)="onEdit()">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button mat-icon-button color="warn" (click)="onDelete()">
-    <mat-icon>delete</mat-icon>
-  </button>
+  <div class="task-content">
+    <span class="task-text" [class.done]="task.done">{{ task.title | truncate:30 }}</span>
+    <small>Criada: {{task.createDt | date: 'dd/MM/yyyy HH:mm'}} <span *ngIf="task.updateDt"> | Atualizada: {{task.updateDt| date: 'dd/MM/yyyy HH:mm'}}</span></small>
+  </div>
+  <div>
+    <button mat-icon-button (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>

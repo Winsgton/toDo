@@ -143,7 +143,7 @@ export class TaskListComponent implements OnInit {
         title: submittedTask.title || '',
         done: submittedTask.done || false,
         createDt: new Date(),
-        updateDt: new Date(),
+        updateDt: undefined,
       };
 
       this.taskService

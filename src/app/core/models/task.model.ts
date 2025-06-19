@@ -3,5 +3,5 @@ export interface Task {
   title: string;
   done: boolean,
   createDt: Date,
-  updateDt: Date
+  updateDt: Date | undefined
 }

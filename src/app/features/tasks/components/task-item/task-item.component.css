@@ -16,6 +16,14 @@
   flex: 1;
 }
 
+/* Tarefa + info */
+.task-content {
+    display: flex;
+    flex-direction: column;
+    /* faz esse container ocupar todo o espaço restante */
+    flex: 1;
+  }
+
 /* Tarefa concluída com risco */
 .task-text.done {
   text-decoration: line-through;

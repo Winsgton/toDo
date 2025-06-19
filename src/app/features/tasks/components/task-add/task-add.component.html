@@ -1,7 +1,7 @@
 <!-- Input de nova tarefa / alteração de tarefa -->
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="add-task-form">
   <mat-form-field class="full-width">
-    <input matInput formControlName="title" placeholder="Nova tarefa" />
+    <input matInput formControlName="title" placeholder="Nova tarefa" appAutofocus/>
     <mat-error *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
       Por favor, insira uma tarefa válida (campo necessariamente precisa de 3 ou mais caracteres)
     </mat-error>
