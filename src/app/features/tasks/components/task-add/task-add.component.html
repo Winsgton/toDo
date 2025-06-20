@@ -6,6 +6,8 @@
       Por favor, insira uma tarefa válida (campo necessariamente precisa de 3 ou mais caracteres)
     </mat-error>
   </mat-form-field>
-  <button mat-flat-button color="primary" type="submit" [disabled]="taskForm.invalid">
-    {{ task?.id ? 'Atualizar' : 'Adicionar' }}</button>
+  <div class="heigth-cotainer-button">
+    <button mat-flat-button color="primary" type="submit" [disabled]="taskForm.invalid" class="heigth-button">
+      {{ task?.id ? 'Atualizar' : 'Adicionar' }}</button>
+  </div>
 </form>

@@ -8,4 +8,15 @@
 /* Faz o input ocupar toda a largura disponível */
 .full-width {
   flex: 1;
+   align-items: flex-start;
+
+}
+
+
+.heigth-cotainer-button{
+  height: 76px !important;
+}
+
+.heigth-button{
+  height: 56px !important;
 }

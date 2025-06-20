@@ -42,7 +42,7 @@ import { Observable, of, switchMap, take, finalize } from 'rxjs';
 export class TaskListComponent implements OnInit {
   editingTask: Task | null = null;
   tasks$: Observable<Task[]>;
-  isUpdating: boolean = false;
+
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -59,10 +59,8 @@ export class TaskListComponent implements OnInit {
   /* exclusão da tarefa */
   onDeleteTask(taskId: number): void {
     if (confirm('Tem certeza que deseja deletar esta tarefa?')) {
-      this.isUpdating = true;
       this.taskService
         .deleteTask(taskId)
-        .pipe(finalize(() => (this.isUpdating = false)))
         .subscribe({
           next: () => {
             console.log('Tarefa excluída:', taskId);
@@ -75,10 +73,8 @@ export class TaskListComponent implements OnInit {
 
   /* marcar/desmarcar tarefa realizada */
   onToggleComplete(taskId: number): void {
-    this.isUpdating = true;
     this.taskService
       .updateTaskDone(taskId)
-      .pipe(finalize(() => (this.isUpdating = false)))
       .subscribe({
         next: (updatedTask) => {
           console.log('Tarefa atualizada:', updatedTask);
@@ -96,7 +92,6 @@ export class TaskListComponent implements OnInit {
 
   /* confirmação de tarefa (envio do formulário) */
   onTaskSubmit(submittedTask: Partial<Task>): void {
-    this.isUpdating = true;
 
     // Se o objeto recebido tem um ID, é uma ATUALIZAÇÃO
     if (submittedTask.id) {
@@ -124,7 +119,6 @@ export class TaskListComponent implements OnInit {
             return of(null); // Não atualiza se não houve mudanças
           }),
           finalize(() => {
-            this.isUpdating = false;
             this.editingTask = null;
           })
         )
@@ -150,7 +144,6 @@ export class TaskListComponent implements OnInit {
         .addTask(newTask)
         .pipe(
           finalize(() => {
-            this.isUpdating = false;
             this.editingTask = null;
           })
         )
