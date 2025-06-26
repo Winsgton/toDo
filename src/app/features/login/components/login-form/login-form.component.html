@@ -1,0 +1,32 @@
+<div class="login-container">
+
+    <mat-card class="login-card">
+        <h2>Faça seu login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field class="full-width">
+                <mat-label>Usuário</mat-label>
+                <input matInput type="text" placeholder="Digite seu usuário (123)" formControlName="user">
+                <mat-error *ngIf="loginForm.get('user')?.hasError('required')">
+                    Usuário é um campo obrigatório
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" placeholder="Digite sua senha (123)" formControlName="password">
+            </mat-form-field>
+
+            <button mat-stroked-button  matButton="outlined" class="full-width continue-button" type="submit">
+                CONTINUAR
+            </button>
+
+            <div class="links">
+                <a>Esqueci minha senha</a>
+                <a>Dúvidas? Clique aqui</a>
+            </div>
+
+        </form>
+    </mat-card>
+</div>
+

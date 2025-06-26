@@ -1,0 +1,51 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fde4e4;
+}
+
+.login-card {
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+        color: #2e2e2e;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.continue-button {
+    margin-top: 1.5rem;
+    height: 48px;
+    font-weight: bold;
+    color: #383737 !important;
+}
+
+.links {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    a {
+        color: #df4d4d;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        font-weight: 500;
+    }
+}
+
+
+
+
+
+
+
