@@ -1,0 +1,25 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.color-navbar {
+    background-color: #fde4e4;
+}
+
+.mat-icon {
+  font-weight: bold;
+}
+
+
+
+
+.main-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
