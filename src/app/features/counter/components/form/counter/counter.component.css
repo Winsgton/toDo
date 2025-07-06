@@ -1,0 +1,20 @@
+.counter-container{
+    display: flex;
+    justify-content: center ;
+    margin-top: 2rem;
+    
+}
+
+.counter-card{
+    width: 30%;
+    text-align: center;
+}
+
+
+.buttons{
+    margin-bottom: 1.5rem;
+    display:flex;
+    gap: 16px; /* Espaço entre os botões */
+    justify-content: center;
+    
+}

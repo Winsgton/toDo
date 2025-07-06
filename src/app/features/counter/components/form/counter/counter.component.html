@@ -1,0 +1,13 @@
+<div class="counter-container">
+    <mat-card class="counter-card">
+        <h4>Contador</h4>
+        <h1>{{value}}</h1>
+
+      <div class="buttons">
+          <button mat-stroked-button (click)="increment()" id="increment">+</button>
+          <button mat-stroked-button (click)="decrement()" id="decrement" >-</button>
+      </div>
+      <p>{{ message }}</p>
+    </mat-card>
+
+</div>

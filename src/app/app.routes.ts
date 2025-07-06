@@ -15,6 +15,10 @@ export const routes: Routes = [
         {
             path: '',
             loadComponent: () => import('./features/tasks/components/task-list/task-list.component').then(m => m.TaskListComponent)
+        },
+        {
+            path: 'counter',
+            loadComponent: () => import('./features/counter/components/form/counter/counter.component').then(m => m.CounterComponent)
         }
       ] 
     },
