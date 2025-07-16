@@ -24,10 +24,15 @@ export class MainLayoutComponent {
 
   constructor(private authService: AuthService, private router: Router){}
 
-  logout(): void {    
+  logout(): void {
     console.log('fui acionado');
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  routerCounter(): void{
+    this.router.navigate(['/counter']);
+
   }
 
 }

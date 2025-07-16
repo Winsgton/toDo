@@ -14,6 +14,7 @@ describe('TaskListComponent', () => {
 
     fixture = TestBed.createComponent(TaskListComponent);
     component = fixture.componentInstance;
+    fixture.debugElement
     fixture.detectChanges();
   });
 
