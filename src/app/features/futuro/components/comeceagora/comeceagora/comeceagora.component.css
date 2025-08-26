@@ -1,0 +1,251 @@
+.icon-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+
+
+  padding: 30px;
+
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/X_logo_2023_%28white%29.svg/250px-X_logo_2023_%28white%29.svg.png');
+  background-size: cover;
+}
+
+
+.overlay-section {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, #17334b, #16364c);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  color: #cdd7e1; /* azul claro para contraste, sem usar branco */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #f2bd76 !important;
+  color: #10283b !important;
+  width: 335px;
+  min-height: 55px !important;
+  margin-top: 22px;
+  font-weight: bold;
+  font-size: 20px !important;
+  padding: 10px !important;
+}
+
+.subTitle1 {
+  font-size: 22px !important;
+  color: #f2bd76;
+  /* margin-top: 30px !important; */
+  margin-top: 90px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+
+
+/* comeceagora.component.css */
+.custom-form-field {
+  width: 100%;
+}
+
+/* Remove todos os fundos e efeitos padrão */
+.custom-form-field .mat-mdc-text-field-wrapper {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+/* Altera o background do input */
+.custom-form-field .mdc-text-field--filled {
+  background: linear-gradient(135deg, #2b4c69, #102b3d) !important;
+  border-radius: 4px 4px 0 0 !important;
+  padding-bottom: 0 !important; /* Remove padding inferior */
+}
+
+/* Remove a linha inferior */
+.custom-form-field .mdc-line-ripple::before,
+.custom-form-field .mdc-line-ripple::after {
+  display: none !important;
+}
+
+/* Estilo para o input */
+.custom-form-field .mdc-text-field__input {
+  padding: 8px 16px !important;
+  border-bottom: 3px solid #f2bd76 !important; /* Linha sutil na base */
+  background-color: transparent !important;
+  color: white !important; /* Cor do texto digitado */
+  caret-color: white !important; /* Cor do cursor */
+}
+
+/* Quando em foco */
+.custom-form-field .mdc-text-field--focused .mdc-text-field__input {
+  border-bottom: 3px solid #f8d7ac  !important; /* Cor primária quando focado */
+  outline: none !important;
+}
+
+/* Estilo para o label */
+.custom-form-field .mdc-floating-label {
+  padding-left: 18px !important;
+  color: rgba(255, 255, 255) !important;
+}
+
+/* Label quando em foco */
+.custom-form-field .mdc-text-field--focused .mdc-floating-label {
+  color: #ffffff !important;
+}
+
+/* Placeholder */
+.custom-form-field .mdc-text-field__input::placeholder {
+  color: rgba(255, 255, 255) !important;
+}
+
+/* Ajuste para mensagens de erro */
+.custom-form-field .mat-mdc-form-field-error {
+  padding: 4px 16px !important;
+  margin: 0 !important;
+  color: #ffb4a2 !important;
+  font-size: 12px !important;
+}
+
+/* Ajuste para a animação do label */
+.custom-form-field .mdc-text-field--filled .mdc-floating-label--float-above {
+  transform: translateY(-106%) scale(0.75) !important;
+  color: #f8d7ac !important;
+}
+
+
+@media (max-width: 768px) {
+  .custom-form-field{
+    width: 100%;
+  }
+}
+
+
+.termos{
+  display: flex;
+  align-items: center;
+
+
+  justify-content: center;
+}
+
+
+/* Remove o fundo e adiciona borda ao checkbox marcado */
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+.mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: #ccbb22 !important;
+    background-color: transparent !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+
+
+/* Estilo para o checkbox não marcado */
+.mdc-checkbox__native-control:enabled~.mdc-checkbox__background {
+    border-color: #ccbb22 !important;
+    border-width: 1px !important;
+    background-color: transparent !important;
+}
+
+.mat-internal-form-field>label {
+  color: white !important;
+}
+
+
+/* Altera a cor do checkmark (✓) */
+.mdc-checkbox__checkmark {
+  color: #ccbb22 !important; /* Cor do check */
+   stroke-width: 4px !important;
+}
+
+/* Altera a cor do caminho do checkmark no SVG */
+.mdc-checkbox__checkmark-path {
+   stroke-width: 4px !important; /* Valor padrão é 2px, ajuste conforme necessário */
+  stroke: #ccbb22 !important; /* Mesma cor para consistência */
+}
+
+/* Para checkboxes indeterminados (traço) */
+.mdc-checkbox__mixedmark {
+  background-color: #ccbb22 !important;
+  height: 4px !important; /* Aumenta a altura do traço */
+  border-radius: 2px !important; /* Mantém bordas arredondadas proporcionalmente */
+   stroke-width: 4px !important;
+}
+
+/* Opcional: animação suave ao marcar */
+.mdc-checkbox__checkmark {
+  transition: all 0.2s ease !important;
+}
+
+
+
+/* Linha inferior do select - igual ao input */
+.custom-select-field .mat-mdc-select-trigger {
+  border-bottom: 3px solid #f2bd76 !important;
+  padding-bottom: 8px !important;
+}
+
+/* Cor da linha quando em foco */
+.custom-select-field .mat-mdc-select:focus .mat-mdc-select-trigger {
+  border-bottom: 3px solid #fce6c9 !important;
+}
+
+
+/* Cor do texto selecionado (no trigger) */
+.custom-select-field .mat-mdc-select-value-text {
+  color: white !important;
+  padding: 16px;
+}
+
+/* Ícone da seta do dropdown */
+.custom-select-field .mat-mdc-select-arrow {
+  color: white !important;
+  padding: 10px;
+}
+
+/* Painel do dropdown (lista de opções) */
+.mat-mdc-select-panel {
+  background: linear-gradient(135deg, #2b4c69, #102b3d) !important;
+  /* border: 1px solid #f2bd76 !important; */
+  border-radius: 4px !important;
+}
+
+/* Cor do texto das opções */
+.mat-mdc-option {
+  color: white !important;
+}
+
+
+
+/* Checkbox NÃO selecionado (estado padrão) */
+.mat-pseudo-checkbox {
+  border: 1px solid #f2bd76 !important; /* Borda branca */
+  background: transparent !important; /* Fundo transparente */
+}
+
+/* Checkbox SELECIONADO */
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+  background: transparent !important; /* Remove fundo cinza */
+  border-color: #f2bd76 !important; /* Borda dourada quando selecionado */
+}
+
+/* Checkmark (✓) - Cor e "espessura" */
+.mat-pseudo-checkbox-checked::after {
+  color: #f2bd76 !important; /* Cor do check */
+  width: 12px !important; /* Controla o tamanho */
+  height: 6px !important;
+  border-width: 2px !important; /* "Espessura" do check */
+}
+
+.dropdown{
+  height: 90px !important;
+}

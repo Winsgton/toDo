@@ -1,0 +1,50 @@
+<div class="icon-wrapper"></div>
+
+<div class="icon-menu">
+  <button [matMenuTriggerFor]="menu" mat-icon-button>
+    <mat-icon class="big-icon">menu</mat-icon>
+  </button>
+  <mat-menu #menu panelClass="custom-menu">
+    <button mat-menu-item>
+      <span>MEUS CONTRATOS</span>
+    </button>
+    <button mat-menu-item >
+      <span>MEU PERFIL</span>
+    </button>
+    <button mat-menu-item>
+      <span>SAIR</span>
+    </button>
+  </mat-menu>
+
+</div>
+
+<div class="overlay-section">
+  <div>
+    <!-- OFERTAS -->
+    <div *ngIf="!pSimula" style="display: flex; flex-direction: column; align-items: center;">
+
+      <mat-card appearance="outlined" class="card-simulacao">
+        <div class="tituloCard">
+          <span span class="material-icons">check</span>
+          <span class="spacer"></span>
+          <h3>SUCESSO</h3>
+        </div>
+        <a class="color-white texto2-card">R$ 7.000,00</a>
+        <a class="color-white">Valor será depositado em</a>
+        <a class="color-white">até 48 horas na conta:</a>
+        <a class="color-dourada">341 - Bradesco</a>
+        <a class="color-dourada">Ag 0123 - CC 0001234</a>
+
+        <p class="color-white texto3-card">Desconto Direto na fonte</p>
+        <a class="color-dourada texto4-card">12x de 632,00</a>
+        <a class="color-white">1.19% a.m - Total: 7.584,00</a>
+      </mat-card>
+      <div class="container-button">
+        <button mat-raised-button class="button">MEUS CONTRATOS</button>
+        <button mat-raised-button class="button">MEU PERFIL</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+
+    <div class="container-tituloSelecionado">
+      <p class="tituloSelecionado">{{ tituloSelecionado }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">{{ tituloSelecionado2 }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+
+    <!--SIMULA-->
+    <div *ngIf="pSimula">
+        <!--valor-->
+        <mat-form-field  appearance="fill" class="custom-form-field">
+          <mat-label>Qual valor você quer?</mat-label>
+          <input matInput placeholder="Digite o valor desejado" mask="separator.2" decimalMarker="," thousandSeparator="." />
+        </mat-form-field>
+
+        <!--parcelas-->
+        <mat-form-field  appearance="fill" class="custom-form-field">
+          <mat-label>Em quantas parcelas?</mat-label>
+          <input matInput placeholder="Digite a quantidade de parcelas" mask="000" />
+        </mat-form-field>
+
+        <button mat-raised-button class="button">SIMULAR</button>
+    </div>
+
+    <!-- OFERTAS -->
+    <div *ngIf="!pSimula" style="display: flex; flex-direction: column; align-items: center;">
+
+      <mat-card appearance="outlined" class="card-simulacao">
+        <div class="tituloCard">
+          <span span class="material-icons">check</span>
+          <span class="spacer"></span>
+          <h3>ELEGÍVEL</h3>
+        </div>
+        <a class="color-white texto2-card">R$ 7.000,00</a>
+        <p class="color-white texto3-card">Desconto Direto na fonte</p>
+        <a class="color-dourada texto4-card">12x de 632,00</a>
+        <a class="color-white">1.19% a.m - Total: 7.584,00</a>
+      </mat-card>
+      <div class="container-button">
+        <button mat-raised-button class="button">EU QUERO</button>
+        <button mat-raised-button class="button2">NOVA SIMULAÇÃO</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

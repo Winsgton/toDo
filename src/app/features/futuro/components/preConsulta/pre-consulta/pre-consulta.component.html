@@ -1,0 +1,50 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+    <div class="container-tituloSelecionado">
+      <p class="tituloSelecionado">{{ tituloSelecionado }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+    <p class="perguntaServidor">{{ perguntaServidor }}</p>
+
+    <!--TIPO SERVIDOR-->
+    <form class="search-form" *ngIf="pTipo==1">
+      <mat-form-field class="search-full-width">
+        <mat-label>Prefeitura</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            <div class="option-container">
+              <span class="checkbox"></span>
+              <span class="option-text">{{ option.name }}</span>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <!--TIPO CLT-->
+    <mat-form-field *ngIf="pTipo==2" appearance="fill" class="custom-form-field">
+      <mat-label>CNPJ</mat-label>
+      <input matInput placeholder="Digite o CNPJ" mask="00.000.000/0000-00"/>
+      <!-- Ícone de lupa à direita -->
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-error>Usuário é um campo obrigatório</mat-error>
+    </mat-form-field>
+
+    <div class="spinner">
+      <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <a>Consultando...</a>
+    </div>
+
+  </div>
+</div>

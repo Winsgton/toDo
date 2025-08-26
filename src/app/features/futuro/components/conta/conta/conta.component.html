@@ -1,0 +1,72 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+    <div class="container-tituloSelecionado">
+      <p class="tituloSelecionado">{{ tituloSelecionado }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+   <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">{{ tituloSelecionado2 }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">Autenticado</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">Documentação</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <p class="perguntaServidor">{{ perguntaServidor }}</p>
+
+    <!--TIPO SERVIDOR-->
+    <form class="search-form" *ngIf="pTipo==1">
+      <mat-form-field class="search-full-width">
+        <mat-label>Banco</mat-label>
+        <!-- Ícone setinha para baixo -->
+        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+        <input
+          type="text"
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            <div class="option-container">
+              <span class="checkbox"></span>
+              <span class="option-text">{{ option.name }}</span>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <!--conta e dígito-->
+    <mat-form-field  appearance="fill" class="custom-form-field">
+      <mat-label>Conta e Dígito</mat-label>
+      <input matInput placeholder="Informe sua conta com dígito"/>
+    </mat-form-field>
+
+    <!--agência e dígito-->
+    <mat-form-field  appearance="fill" class="custom-form-field">
+      <mat-label>Agência e dígito</mat-label>
+      <input matInput placeholder="Informe sua agência com dígito"/>
+    </mat-form-field>
+
+    <div class="container-button">
+      <button mat-raised-button class="button">Confirmar</button>
+    </div>
+  </div>
+</div>

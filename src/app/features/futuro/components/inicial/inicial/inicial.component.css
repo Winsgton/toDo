@@ -1,0 +1,98 @@
+.example-card {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  /* border-radius: 12px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.background-img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.overlay-section {
+  height: 40%;
+  width: 100%;
+  background: linear-gradient(to top, #10283b, #16364c);
+  display: flex;
+  flex-direction: column;
+ /* justify-content: center; */
+  align-items: center;
+  color: #cdd7e1; /* azul claro para contraste, sem usar branco */
+  padding: 16px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.overlay-section p {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .background-img {
+    height: 60%;
+  }
+
+  .overlay-section {
+    height: 40%;
+    padding: 12px;
+  }
+
+  .overlay-section p {
+    font-size: 0.9rem;
+  }
+}
+
+.title1 {
+  font-size: 38px !important;
+  font-weight: bold;
+  color: #f2bd76; /* dourado claro */
+  line-height: 1;
+  margin-top: 10px !important;
+}
+
+.title2 {
+  font-size: 30px !important;
+  font-weight: bold;
+  color: white;
+  line-height: 0.9;
+  margin-top: -10px !important;
+  max-width: 350px;
+}
+
+.title3 {
+  font-size: 18px !important;
+  color: white;
+  margin-top: 20px !important;
+}
+
+.button {
+  background-color: #f2bd76 !important;
+  color: #10283b !important;
+  width: 335px;
+  min-height: 55px !important;
+  margin-top: 10px;
+
+  font-size: 20px !important;
+  padding: 10px !important;
+}
+
+.icon-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+
+
+  padding: 30px;
+
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/X_logo_2023_%28white%29.svg/250px-X_logo_2023_%28white%29.svg.png');
+  background-size: cover;
+}

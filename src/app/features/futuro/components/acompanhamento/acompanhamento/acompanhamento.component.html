@@ -1,0 +1,85 @@
+<div class="icon-wrapper"></div>
+
+<div class="icon-menu">
+  <button [matMenuTriggerFor]="menu" mat-icon-button>
+    <mat-icon class="big-icon">menu</mat-icon>
+  </button>
+  <mat-menu #menu panelClass="custom-menu">
+    <button mat-menu-item>
+      <span>MEUS CONTRATOS</span>
+    </button>
+    <button mat-menu-item>
+      <span>MEU PERFIL</span>
+    </button>
+    <button mat-menu-item>
+      <span>SAIR</span>
+    </button>
+  </mat-menu>
+</div>
+
+<div class="overlay-section">
+  <div class="container-tituloSelecionado">
+    <p class="tituloSelecionado">MEUS CONTRATOS</p>
+  </div>
+
+  <!-- CARD 1 -->
+  <mat-card appearance="outlined" class="card-contratos">
+    <div
+      style="
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      "
+    >
+      <a class="color-white" style="margin-top: 10px">R$ 7.000,00</a>
+      <div class="tituloCard">
+        <span span class="material-icons">check</span>
+        <span class="spacer"></span>
+        <p>TRANSFERIDO</p>
+      </div>
+    </div>
+
+    <div class="container-progress">
+      <div class="container-tam-progress">
+        <mat-progress-bar
+          mode="determinate"
+          [value]="50"
+          class="custom-progress"
+        ></mat-progress-bar>
+      </div>
+    </div>
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <a class="color-white" style="margin-left: 15px">Pago: 2 de 12</a>
+      <a
+        class="color-dourada"
+        style="margin-right: 15px; text-decoration: underline"
+        >ver contrato</a
+      >
+    </div>
+  </mat-card>
+
+  <div class="container-tituloSelecionado2">
+    <p class="tituloSelecionado">OPORTUNIDADE</p>
+  </div>
+
+  <!-- OFERTAS -->
+
+  <mat-card appearance="outlined" class="card-simulacao">
+    <div class="tituloCard">
+      <span span class="material-icons">check</span>
+      <span class="spacer"></span>
+      <h3>APROVADO</h3>
+    </div>
+    <a class="color-white texto2-card">R$ 18.000,00*</a>
+    <a class="color-white">Você tem um empréstimo pessoal</a>
+    <a class="color-white">pré-aprovado para valores maiores</a>
+    <a class="color-dourada">Débitos em até 24x</a>
+
+    <div class="container-button">
+      <button mat-raised-button class="button2">SABER MAIS</button>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,317 @@
+.icon-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+
+  padding: 30px;
+
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/X_logo_2023_%28white%29.svg/250px-X_logo_2023_%28white%29.svg.png");
+  background-size: cover;
+}
+
+.overlay-section {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, #17334b, #16364c);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  color: #cdd7e1; /* azul claro para contraste, sem usar branco */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tituloSelecionado {
+  font-size: 20px !important;
+  margin-left: 10px;
+  /* text-align: center; */
+  color: white !important;
+}
+
+.perguntaServidor {
+  font-size: 20px !important;
+  color: #f2bd76;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* Estilo geral do form field */
+.search-form {
+  width: 100%;
+}
+
+.search-full-width .mat-mdc-text-field-wrapper {
+  background: linear-gradient(135deg, #2b4c69, #102b3d) !important;
+  padding: 0 !important;
+}
+
+.search-full-width {
+  width: 100%;
+}
+
+/* Label normal */
+.search-full-width .mdc-floating-label {
+  color: #f2bd76 !important; /* Cinza médio */
+  padding: 0px 16px;
+}
+
+/* Label quando flutua (campo com foco ou preenchido) */
+.search-full-width .mdc-floating-label--float-above {
+  color: #f2bd76 !important; /* Dourado */
+}
+
+.search-full-width .mdc-text-field__input {
+  padding: 10px !important;
+  border-bottom: 3px solid #f2bd76 !important;
+  color: rgb(255, 255, 255) !important;
+  caret-color: rgb(250, 250, 250) !important;
+}
+
+/* Painel do autocomplete */
+.mat-mdc-autocomplete-panel {
+  background: linear-gradient(135deg, #2b4c69, #102b3d) !important;
+  border-radius: 4px !important;
+  /* box-shadow: 0 2px 4px rgba(134, 13, 13, 0.1) !important; */
+  /* margin-top: 4px !important; */
+}
+
+/* Container de cada opção */
+.option-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Checkbox customizado */
+.checkbox {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #f2bd76;
+  border-radius: 2px;
+  margin-right: 12px;
+  position: relative;
+}
+
+/* Texto da opção */
+.option-text {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* Opção selecionada */
+.mat-mdc-option.mdc-list-item--selected .checkbox {
+  /* background-color: #f2bd76; */
+  border-color: #f2bd76;
+}
+
+.mat-mdc-option.mdc-list-item--selected .checkbox::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #f2bd76;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Hover state */
+.mat-mdc-option:hover .checkbox {
+  border-color: #f2bd76;
+}
+
+/* Para campo desabilitado */
+.search-full-width .mdc-text-field--disabled {
+  background-color: #f2bd76 !important;
+}
+
+/* Cor da opção selecionada */
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: #00263c4a !important; /* Dourado com transparência */
+}
+
+/* Remove a linha vermelha inferior */
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: transparent !important; /* Remove completamente */
+}
+
+/* Remove também o efeito de focus */
+.mdc-text-field--filled .mdc-line-ripple::after {
+  border-bottom-color: transparent !important;
+}
+
+.material-icons {
+  color: #f2bd76;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container-tituloSelecionado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 90px;
+}
+
+.container-tituloSelecionado2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -30px !important;
+}
+
+.spacer {
+  margin-left: 10px;
+}
+
+.custom-form-field {
+  width: 60%;
+  display: flex;
+}
+
+/* Remove todos os fundos e efeitos padrão */
+.custom-form-field .mat-mdc-text-field-wrapper {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+/* Altera o background do input */
+.custom-form-field .mdc-text-field--filled {
+  background: linear-gradient(135deg, #2b4c69, #102b3d) !important;
+  border-radius: 4px 4px 0 0 !important;
+  padding-bottom: 0 !important; /* Remove padding inferior */
+}
+
+/* Remove a linha inferior */
+.custom-form-field .mdc-line-ripple::before,
+.custom-form-field .mdc-line-ripple::after {
+  display: none !important;
+}
+
+/* Estilo para o input */
+.custom-form-field .mdc-text-field__input {
+  padding: 8px 16px !important;
+  border-bottom: 3px solid #f2bd76 !important; /* Linha sutil na base */
+  background-color: transparent !important;
+  color: white !important; /* Cor do texto digitado */
+  caret-color: white !important; /* Cor do cursor */
+}
+
+/* Quando em foco */
+.custom-form-field .mdc-text-field--focused .mdc-text-field__input {
+  border-bottom: 3px solid #f8d7ac !important; /* Cor primária quando focado */
+  outline: none !important;
+}
+
+/* Estilo para o label */
+.custom-form-field .mdc-floating-label {
+  padding-left: 18px !important;
+  color: rgba(255, 255, 255) !important;
+}
+
+/* Label quando em foco */
+.custom-form-field .mdc-text-field--focused .mdc-floating-label {
+  color: #ffffff !important;
+}
+
+/* Placeholder */
+.custom-form-field .mdc-text-field__input::placeholder {
+  color: rgba(255, 255, 255) !important;
+}
+
+/* Ajuste para mensagens de erro */
+.custom-form-field .mat-mdc-form-field-error {
+  padding: 4px 16px !important;
+  margin: 0 !important;
+  color: #ffb4a2 !important;
+  font-size: 12px !important;
+}
+
+/* Ajuste para a animação do label */
+.custom-form-field .mdc-text-field--filled .mdc-floating-label--float-above {
+  transform: translateY(-106%) scale(0.75) !important;
+  color: #f8d7ac !important;
+}
+
+.button {
+  background-color: #f2bd76 !important;
+  color: #10283b !important;
+  width: 335px;
+  min-height: 55px !important;
+  font-weight: bold;
+  font-size: 20px !important;
+}
+
+.button2 {
+  background-color: transparent !important;
+  border: 1px solid #f2bd76 !important;     /* Adiciona borda */
+  color: #f2bd76 !important;
+  width: 335px;
+  min-height: 55px !important;
+  font-weight: bold;
+  font-size: 20px !important;
+}
+
+
+.container-button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.card-simulacao{
+  background-color: transparent !important;
+  height: 260px;
+  width: 60%;
+  border: 1px solid #f2bd76 !important; /* borda dourada */
+}
+
+.tituloCard{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f2bd76;
+  font-size: 20px;
+}
+
+.color-white {
+  color: white !important;
+}
+
+.color-dourada {
+  color: #f2bd76 !important;
+}
+
+.texto2-card{
+  margin-top: -25px;
+  font-size: 50px;
+  font-weight: lighter;
+}
+
+.texto3-card{
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+.texto4-card{
+  font-size: 18px;
+  margin-top: -20px;
+}
+
+
+@media (max-width: 768px) {
+  .custom-form-field {
+    width: 100%;
+  }
+
+  .card-simulacao{
+    width: 100%;;
+  }
+}

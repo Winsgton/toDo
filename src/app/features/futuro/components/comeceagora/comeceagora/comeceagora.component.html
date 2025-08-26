@@ -1,0 +1,61 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+    <p class="subTitle1">{{ subTitle1 }}</p>
+
+    <mat-form-field appearance="fill" class="custom-form-field">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Digite seu nome" />
+      <mat-error>Usuário é um campo obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="custom-form-field">
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="Digite seu e-mail" />
+    </mat-form-field>
+
+    <mat-form-field class="custom-form-field">
+      <mat-label>Data de nascimento</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Informe sua data de nascimento"
+      />
+      <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="custom-form-field custom-select-field dropdown">
+      <mat-label>Sou funcionário</mat-label>
+      <mat-select [formControl]="toppings" multiple>
+        <mat-select-trigger>
+          {{ (toppings.value && toppings.value[0]) || "" }}
+          <span
+            *ngIf="(toppings.value?.length || 0) > 1"
+            class="example-additional-selection"
+          >
+            (+{{ (toppings.value?.length || 0) - 1 }}
+            {{ toppings.value?.length === 2 ? "other" : "others" }})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">
+          {{ topping }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="termos">
+      <mat-checkbox class="textoTermo"
+        >Aceito os Termos de Política de Privacidade</mat-checkbox
+      >
+    </div>
+    <button mat-raised-button class="button">COMECE AGORA!</button>
+  </div>
+</div>
+
+

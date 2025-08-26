@@ -1,0 +1,38 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+    <div class="container-tituloSelecionado">
+      <p class="tituloSelecionado">{{ tituloSelecionado }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">{{ tituloSelecionado2 }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">Autenticado</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <!-- OFERTAS -->
+    <div
+      *ngIf="!pSimula"
+      style="display: flex; flex-direction: column; align-items: center"
+    >
+      <mat-card appearance="outlined" class="card-simulacao">
+        <span class="material-icons icon">cloud_upload</span>
+        <p class="color-white texto3-card">Documento</p>
+      </mat-card>
+
+      <div class="container-button">
+        <button mat-raised-button class="button">ENVIAR</button>
+        <!-- <button mat-raised-button class="button2">REENVIAR</button> -->
+      </div>
+    </div>
+  </div>
+</div>

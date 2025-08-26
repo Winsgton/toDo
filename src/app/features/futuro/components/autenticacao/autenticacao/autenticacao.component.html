@@ -1,0 +1,36 @@
+<div class="icon-wrapper"></div>
+<div class="overlay-section">
+  <div>
+    <div class="container-tituloSelecionado">
+      <p class="tituloSelecionado">{{ tituloSelecionado }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <div class="container-tituloSelecionado2">
+      <p class="tituloSelecionado">{{ tituloSelecionado2 }}</p>
+      <span class="spacer"></span>
+      <span class="material-icons">check</span>
+    </div>
+
+    <p class="textoAuxiliar">{{textoAuxiliar}}</p>
+
+    <mat-form-field appearance="fill" class="custom-form-field">
+      <input matInput mask="000000" placeholder="000000" />
+    </mat-form-field>
+
+    <div class="container-progress">
+      <mat-progress-bar
+        mode="determinate"
+        [value]="50"
+        class="custom-progress"
+      ></mat-progress-bar>
+    </div>
+    <p class="color-white">O código expira em 3:42</p>
+
+    <div class="container-button">
+      <button mat-raised-button class="button">CONFIRMAR</button>
+      <button mat-raised-button class="button2">REENVIAR</button>
+    </div>
+  </div>
+</div>
