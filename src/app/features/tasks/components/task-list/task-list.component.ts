@@ -43,7 +43,6 @@ export class TaskListComponent implements OnInit {
   editingTask: Task | null = null;
   tasks$: Observable<Task[]>;
 
-
   constructor(
     private cdr: ChangeDetectorRef,
     private taskService: TaskService
@@ -59,29 +58,25 @@ export class TaskListComponent implements OnInit {
   /* exclusão da tarefa */
   onDeleteTask(taskId: number): void {
     if (confirm('Tem certeza que deseja deletar esta tarefa?')) {
-      this.taskService
-        .deleteTask(taskId)
-        .subscribe({
-          next: () => {
-            console.log('Tarefa excluída:', taskId);
-            // A lista já foi atualizada automaticamente pelo BehaviorSubject
-          },
-          error: (err) => console.error('Erro ao excluir:', err),
-        });
+      this.taskService.deleteTask(taskId).subscribe({
+        next: () => {
+          console.log('Tarefa excluída:', taskId);
+          // A lista já foi atualizada automaticamente pelo BehaviorSubject
+        },
+        error: (err) => console.error('Erro ao excluir:', err),
+      });
     }
   }
 
   /* marcar/desmarcar tarefa realizada */
   onToggleComplete(taskId: number): void {
-    this.taskService
-      .updateTaskDone(taskId)
-      .subscribe({
-        next: (updatedTask) => {
-          console.log('Tarefa atualizada:', updatedTask);
-          // A lista já foi atualizada automaticamente pelo BehaviorSubject
-        },
-        error: (err) => console.error('Erro ao atualizar:', err),
-      });
+    this.taskService.updateTaskfeito(taskId).subscribe({
+      next: (atualizadoEmask) => {
+        console.log('Tarefa atualizada:', atualizadoEmask);
+        // A lista já foi atualizada automaticamente pelo BehaviorSubject
+      },
+      error: (err) => console.error('Erro ao atualizar:', err),
+    });
   }
 
   /* editar tarefa */
@@ -92,7 +87,6 @@ export class TaskListComponent implements OnInit {
 
   /* confirmação de tarefa (envio do formulário) */
   onTaskSubmit(submittedTask: Partial<Task>): void {
-
     // Se o objeto recebido tem um ID, é uma ATUALIZAÇÃO
     if (submittedTask.id) {
       this.taskService
@@ -106,13 +100,13 @@ export class TaskListComponent implements OnInit {
 
             // Só atualiza se o título mudou
             if (
-              submittedTask.title &&
-              submittedTask.title !== existingTask.title
+              submittedTask.titulo &&
+              submittedTask.titulo !== existingTask.titulo
             ) {
               const taskToUpdate = {
                 ...existingTask,
-                title: submittedTask.title,
-                updateDt: new Date(),
+                titulo: submittedTask.titulo,
+                atualizadoEm: new Date(),
               };
               return this.taskService.updateTask(taskToUpdate);
             }
@@ -123,9 +117,9 @@ export class TaskListComponent implements OnInit {
           })
         )
         .subscribe({
-          next: (updatedTask) => {
-            if (updatedTask) {
-              console.log('Tarefa atualizada:', updatedTask);
+          next: (atualizadoEmask) => {
+            if (atualizadoEmask) {
+              console.log('Tarefa atualizada:', atualizadoEmask);
               // A lista já foi atualizada automaticamente pelo BehaviorSubject
             }
           },
@@ -133,11 +127,9 @@ export class TaskListComponent implements OnInit {
         });
     } else {
       // Se não tem ID, é uma ADIÇÃO de nova tarefa
-      const newTask: Omit<Task, 'id'> = {
-        title: submittedTask.title || '',
-        done: submittedTask.done || false,
-        createDt: new Date(),
-        updateDt: undefined,
+      const newTask: Partial<Task> = {
+        titulo: submittedTask.titulo || '',
+        feito: submittedTask.feito || false,
       };
 
       this.taskService

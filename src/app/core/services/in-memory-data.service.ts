@@ -12,17 +12,17 @@ export class InMemoryDataService implements InMemoryDbService {
     const tasks: Task[] = [
       {
         id: 1,
-        title: 'Tarefa 1',
-        done: false,
-        createDt: new Date('2024-01-15'),
-        updateDt: new Date('2024-01-15'),
+        titulo: 'Tarefa 1',
+        feito: false,
+        criadoEm: new Date('2024-01-15'),
+        atualizadoEm: new Date('2024-01-15'),
       },
       {
         id: 2,
-        title: 'Tarefa 2',
-        done: true,
-        createDt: new Date('2024-01-14'),
-        updateDt: new Date('2024-01-16'),
+        titulo: 'Tarefa 2',
+        feito: true,
+        criadoEm: new Date('2024-01-14'),
+        atualizadoEm: new Date('2024-01-16'),
       },
     ];
     return { tasks };

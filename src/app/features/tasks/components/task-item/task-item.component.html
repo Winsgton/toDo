@@ -1,9 +1,9 @@
 <!-- Exemplo de item de tarefa -->
 <div class="task-item">
-  <mat-slide-toggle [checked]="task.done" (change)="onToggleComplete()"></mat-slide-toggle>
+  <mat-slide-toggle [checked]="task.feito" (change)="onToggleComplete()"></mat-slide-toggle>
   <div class="task-content">
-    <span class="task-text" [class.done]="task.done">{{ task.title | truncate:30 }}</span>
-    <small>Criada: {{task.createDt | date: 'dd/MM/yyyy HH:mm'}} <span *ngIf="task.updateDt"> | Atualizada: {{task.updateDt| date: 'dd/MM/yyyy HH:mm'}}</span></small>
+    <span class="task-text" [class.feito]="task.feito">{{ task.titulo | truncate:30 }}</span>
+    <small>Criada: {{task.criadoEm | date: 'dd/MM/yyyy HH:mm'}} <span *ngIf="task.atualizadoEm"> | Atualizada: {{task.atualizadoEm| date: 'dd/MM/yyyy HH:mm'}}</span></small>
   </div>
   <div>
     <button mat-icon-button (click)="onEdit()">

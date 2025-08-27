@@ -40,7 +40,7 @@ export class TaskItemComponent {
     this.delete.emit(this.task.id);
   }
 
-  /* aciona o evento de saída: tarefa feita [done] */
+  /* aciona o evento de saída: tarefa feita [feito] */
   onToggleComplete(): void {
     console.log('1');
     this.toggleComplete.emit(this.task.id);

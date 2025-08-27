@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -29,11 +38,11 @@ import { AutofocusDirective } from '../../../../utils/directives/autofocus.direc
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    AutofocusDirective
+    AutofocusDirective,
   ],
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskAddComponent implements OnInit, OnChanges {
   @Input() task: Task | null = null;
@@ -41,7 +50,7 @@ export class TaskAddComponent implements OnInit, OnChanges {
 
   taskForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   /* inicia o formulário */
   ngOnInit(): void {
@@ -49,11 +58,11 @@ export class TaskAddComponent implements OnInit, OnChanges {
   }
 
   /* detecta mudança/alterações */
- ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.task && changes['task']) {
       this.taskForm.patchValue({
-        title: this.task.title,
-        done: this.task.done
+        titulo: this.task.titulo,
+        feito: this.task.feito,
       });
     }
   }
@@ -61,11 +70,11 @@ export class TaskAddComponent implements OnInit, OnChanges {
   /* inicia formulário reativo */
   private initForm(): void {
     this.taskForm = this.fb.group({
-      title: [
-        this.task?.title || '' ,
+      titulo: [
+        this.task?.titulo || '',
         [Validators.required, Validators.minLength(3)],
       ],
-      done: [this.task?.done || false],
+      feito: [this.task?.feito || false],
     });
   }
 
@@ -74,15 +83,14 @@ export class TaskAddComponent implements OnInit, OnChanges {
     if (this.taskForm.valid) {
       const taskData: Partial<Task> = {
         id: this.task?.id,
-        ...this.taskForm.value
+        ...this.taskForm.value,
       };
 
       this.taskSubmit.emit(taskData);
       this.taskForm.reset({
         title: '',
-        done: false
+        feito: false,
       });
     }
   }
-
 }

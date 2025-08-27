@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { Task } from '../../core/models/task.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class TaskService {
   private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
-  tasksUrl = 'api/tasks';
+  tasksUrlBase = environment.apiUrl;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,11 +32,9 @@ export class TaskService {
   /* Obtém todas as tarefas 'via api' do mock */
   private loadTasks(): void {
     this.http
-      .get<Task[]>(this.tasksUrl)
+      .get<Task[]>(`${this.tasksUrlBase}/task`)
       .pipe(
-        tap((tasks) =>
-          console.log('Tarefas carregadas:', tasks)
-      ),
+        tap((tasks) => console.log('Tarefas carregadas:', tasks)),
         catchError(this.handleError<Task[]>('loadTasks', []))
       )
       .subscribe({
@@ -57,34 +56,33 @@ export class TaskService {
   }
 
   /* Adiciona uma tarefa */
-  addTask(task: Omit<Task, 'id'>): Observable<Task> {
-    // console.log('estou no service');
-    // console.log(task);
-
-    return this.http.post<Task>(this.tasksUrl, task, this.httpOptions).pipe(
-      tap((newTask) => {
-        console.log('Tarefa adicionada com sucesso:', newTask);
-        // Atualiza a lista de tarefas com a nova tarefa
-        const currentTasks = this.tasksSubject.value;
-        this.tasksSubject.next([...currentTasks, newTask]);
-      }),
-      catchError(this.handleError<Task>('addTask'))
-    );
+  addTask(task: Partial<Task>): Observable<Task> {
+    return this.http
+      .post<Task>(`${this.tasksUrlBase}/task`, task, this.httpOptions)
+      .pipe(
+        tap((newTask) => {
+          console.log('Tarefa adicionada com sucesso:', newTask);
+          // Atualiza a lista de tarefas com a nova tarefa
+          const currentTasks = this.tasksSubject.value;
+          this.tasksSubject.next([...currentTasks, newTask]);
+        }),
+        catchError(this.handleError<Task>('addTask'))
+      );
   }
 
   /* atualiza tarefa */
   updateTask(task: Task): Observable<Task> {
-    const url = `${this.tasksUrl}/${task.id}`;
+    const url = `${this.tasksUrlBase}/task/${task.id}`;
 
-    return this.http.put<Task>(url, task, this.httpOptions).pipe(
-      tap((updatedTask) => {
+    return this.http.patch<Task>(url, task, this.httpOptions).pipe(
+      tap((atualizadoEmask) => {
         // Se a resposta for null, usa o próprio objeto enviado:
-        const newTask = updatedTask || task;
+        const newTask = atualizadoEmask || task;
         const currentTasks = this.tasksSubject.value;
-        const updatedTasks = currentTasks.map((t) =>
+        const atualizadoEmasks = currentTasks.map((t) =>
           t.id === task.id ? newTask : t
         );
-        this.tasksSubject.next(updatedTasks);
+        this.tasksSubject.next(atualizadoEmasks);
       }),
       catchError(this.handleError<Task>('updateTask'))
     );
@@ -98,17 +96,17 @@ export class TaskService {
   }
 
   /* atualiza conclusão/reversão de conclusão da tarefa */
-  updateTaskDone(id: number): Observable<Task> {
+  updateTaskfeito(id: number): Observable<Task> {
     return this.getTaskById(id).pipe(
       take(1),
       switchMap((task) => {
         if (!task) throw new Error('Tarefa não encontrada');
-        const updatedTask: Task = {
+        const atualizadoEmask: Task = {
           ...task,
-          done: !task.done,
-          updateDt: new Date(),
+          feito: !task.feito,
+          atualizadoEm: new Date(),
         };
-        return this.updateTask(updatedTask);
+        return this.updateTask(atualizadoEmask);
       }),
       catchError(this.handleError<Task>('toggleTaskCompletion'))
     );
@@ -116,7 +114,7 @@ export class TaskService {
 
   /* exclui tarefa */
   deleteTask(id: number): Observable<Task> {
-    const url = `${this.tasksUrl}/${id}`;
+    const url = `${this.tasksUrlBase}/task/${id}`;
 
     return this.http.delete<Task>(url, this.httpOptions).pipe(
       tap(() => {

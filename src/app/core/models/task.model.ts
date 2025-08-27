@@ -1,7 +1,7 @@
 export interface Task {
   id: number,
-  title: string;
-  done: boolean,
-  createDt: Date,
-  updateDt: Date | undefined
+  titulo: string;
+  feito: boolean,
+  criadoEm: Date,
+  atualizadoEm: Date | undefined
 }
