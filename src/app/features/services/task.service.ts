@@ -10,7 +10,8 @@ import {
   tap,
 } from 'rxjs';
 import { Task } from '../../core/models/task.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PaginatedResponse } from '../../shared/models/paginated-response.model';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
@@ -31,16 +32,28 @@ export class TaskService {
 
   /* Obtém todas as tarefas 'via api' do mock */
   private loadTasks(): void {
-    this.http
-      .get<Task[]>(`${this.tasksUrlBase}/task`)
+    this.getTasksPaginated(1, 10).subscribe({
+      next: (response) => {
+        // Se o backend retornar um objeto paginado, pegue os dados
+        const tasks = Array.isArray(response) ? response : response?.data || [];
+        this.tasksSubject.next(tasks);
+        console.log('Tarefas carregadas:', tasks);
+      },
+      error: (err) => console.error('Erro ao carregar tarefas:', err),
+    });
+  }
+
+  /** Busca tarefas paginadas via API */
+  getTasksPaginated(page: number, perPage: number): Observable<PaginatedResponse<Task>> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('per_page', perPage);
+    return this.http
+      .get<PaginatedResponse<Task>>(`${this.tasksUrlBase}/task/listar`, { params })
       .pipe(
-        tap((tasks) => console.log('Tarefas carregadas:', tasks)),
-        catchError(this.handleError<Task[]>('loadTasks', []))
-      )
-      .subscribe({
-        next: (tasks) => this.tasksSubject.next(tasks),
-        error: (err) => console.error('Erro ao carregar tarefas:', err),
-      });
+        // NÃO atualiza o tasksSubject aqui para evitar ciclo infinito
+        catchError(this.handleError<PaginatedResponse<Task>>('getTasksPaginated', { data: [], total: 0, page, perPage }))
+      );
   }
 
   /* Obtém todas as tarefas */
@@ -127,3 +140,4 @@ export class TaskService {
     );
   }
 }
+

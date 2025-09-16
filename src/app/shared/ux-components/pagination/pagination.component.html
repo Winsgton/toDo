@@ -1,0 +1,61 @@
+<div class="pagination-container">
+  <!-- Seletor de quantidade por página -->
+  <div class="per-page-selector">
+    <mat-form-field appearance="outline" class="">
+      <mat-label>Itens por página</mat-label>
+      <mat-select [value]="perPage()" (selectionChange)="onPerPageChange($event.value)">
+        <mat-option *ngFor="let option of perPageOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Controles de navegação -->
+  <div class="navigation-controls">
+    <button mat-button
+            [disabled]="page() === 1"
+            (click)="goToFirst()"
+            aria-label="Primeira página">
+      <mat-icon>first_page</mat-icon>
+    </button>
+
+    <button mat-button
+            [disabled]="page() === 1"
+            (click)="goToPrevious()"
+            aria-label="Página anterior">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <span class="page-numbers">
+      <button mat-button
+              *ngFor="let p of pages()"
+              [class.active]="p === page()"
+              [disabled]="p === -1"
+              (click)="goToPage(p)"
+              [attr.aria-label]="p === -1 ? '...' : 'Página ' + p">
+        <span *ngIf="p !== -1">{{ p }}</span>
+        <span *ngIf="p === -1">...</span>
+      </button>
+    </span>
+
+    <button mat-button
+            [disabled]="page() === totalPages()"
+            (click)="goToNext()"
+            aria-label="Próxima página">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <button mat-button
+            [disabled]="page() === totalPages()"
+            (click)="goToLast()"
+            aria-label="Última página">
+      <mat-icon>last_page</mat-icon>
+    </button>
+  </div>
+
+  <!-- Informações da página -->
+  <div class="page-info">
+    <span>{{ currentRange() }}</span>
+  </div>
+</div>

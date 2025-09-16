@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   OnInit,
   ChangeDetectionStrategy,
+  OnDestroy,
 } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,9 +16,11 @@ import { FormsModule } from '@angular/forms';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { TaskAddComponent } from '../task-add/task-add.component';
 import { Task } from '../../../../core/models/task.model';
+import { PaginatedResponse } from '../../../../shared/models/paginated-response.model';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../../services/task.service';
-import { Observable, of, switchMap, take, finalize } from 'rxjs';
+import { Observable, of, switchMap, take, finalize, Subject, takeUntil } from 'rxjs';
+import { PaginationComponent } from '../../../../shared/ux-components/pagination/pagination.component';
 
 @Component({
   selector: 'app-task-list',
@@ -34,25 +37,55 @@ import { Observable, of, switchMap, take, finalize } from 'rxjs';
     MatInputModule,
     TaskItemComponent,
     TaskAddComponent,
+    PaginationComponent,
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnDestroy {
   editingTask: Task | null = null;
-  tasks$: Observable<Task[]>;
+  tasksPaginated$: Observable<PaginatedResponse<Task>>;
+  currentPage: number = 1;
+  perPage: number = 5;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private cdr: ChangeDetectorRef,
     private taskService: TaskService
   ) {
-    this.tasks$ = this.taskService.getTasks();
+    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage);
   }
 
   ngOnInit() {
-    /* Carrega as tarefas no início da instância */
-    this.tasks$ = this.taskService.getTasks();
+    // Escuta mudanças nas tarefas - o tasksSubject é atualizado em todas as operações CRUD
+    this.taskService.tasks$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.loadTasks();
+        this.cdr.markForCheck();
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadTasks() {
+    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage);
+    this.cdr.markForCheck(); // Força change detection
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.loadTasks();
+  }
+
+  onPerPageChange(perPage: number) {
+    this.perPage = perPage;
+    this.currentPage = 1; // Reset to first page when changing perPage
+    this.loadTasks();
   }
 
   /* exclusão da tarefa */
@@ -61,7 +94,6 @@ export class TaskListComponent implements OnInit {
       this.taskService.deleteTask(taskId).subscribe({
         next: () => {
           console.log('Tarefa excluída:', taskId);
-          // A lista já foi atualizada automaticamente pelo BehaviorSubject
         },
         error: (err) => console.error('Erro ao excluir:', err),
       });
@@ -73,7 +105,6 @@ export class TaskListComponent implements OnInit {
     this.taskService.updateTaskfeito(taskId).subscribe({
       next: (atualizadoEmask) => {
         console.log('Tarefa atualizada:', atualizadoEmask);
-        // A lista já foi atualizada automaticamente pelo BehaviorSubject
       },
       error: (err) => console.error('Erro ao atualizar:', err),
     });
@@ -120,7 +151,6 @@ export class TaskListComponent implements OnInit {
           next: (atualizadoEmask) => {
             if (atualizadoEmask) {
               console.log('Tarefa atualizada:', atualizadoEmask);
-              // A lista já foi atualizada automaticamente pelo BehaviorSubject
             }
           },
           error: (err) => console.error('Erro:', err),
@@ -142,10 +172,10 @@ export class TaskListComponent implements OnInit {
         .subscribe({
           next: (newTask) => {
             console.log('Tarefa criada:', newTask);
-            // Não precisa atualizar manualmente, o BehaviorSubject já cuidou disso
           },
           error: (err) => console.error('Erro ao criar tarefa:', err),
         });
     }
   }
 }
+

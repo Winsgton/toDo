@@ -12,22 +12,31 @@
 </mat-card>
 
 <!-- Card principal de cadastro de tarefas -->
-<mat-card class="task-card" appearance="outlined" *ngIf="(tasks$ | async) as tasks">
+<mat-card class="task-card" appearance="outlined" *ngIf="(tasksPaginated$ | async) as paginatedTasks">
 
   <!-- Lista de tarefas -->
   <div class="task-list">
     <p>Tarefas:</p>
 
-    <div *ngIf="tasks.length === 0" class="no-tasks">
+    <div *ngIf="paginatedTasks.data.length === 0" class="no-tasks">
       <mat-icon>assignment</mat-icon>
       <p>Nenhuma tarefa encontrada. Que tal criar uma nova?</p>
     </div>
 
     <!--componente do item de cada tarefa-->
-    <div *ngFor="let task of tasks$ | async">
+    <div *ngFor="let task of paginatedTasks.data">
       <app-task-item [task]="task" (edit)="onEditTask($event)" (delete)="onDeleteTask($event)"
         (toggleComplete)="onToggleComplete($event)">
       </app-task-item>
     </div>
   </div>
+
+  <!-- Componente de paginação -->
+  <app-pagination
+    [total]="paginatedTasks.total"
+    [page]="paginatedTasks.page"
+    [perPage]="paginatedTasks.perPage"
+    (pageChange)="onPageChange($event)"
+    (perPageChange)="onPerPageChange($event)">
+  </app-pagination>
 </mat-card>
