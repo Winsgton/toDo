@@ -19,7 +19,7 @@ import { Task } from '../../../../core/models/task.model';
 import { PaginatedResponse } from '../../../../shared/models/paginated-response.model';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../../services/task.service';
-import { Observable, of, switchMap, take, finalize, Subject, takeUntil } from 'rxjs';
+import { Observable, of, switchMap, take, finalize, Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
 import { PaginationComponent } from '../../../../shared/ux-components/pagination/pagination.component';
 
 @Component({
@@ -48,13 +48,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
   tasksPaginated$: Observable<PaginatedResponse<Task>>;
   currentPage: number = 1;
   perPage: number = 5;
+  searchFilter: string = '';
   private destroy$ = new Subject<void>();
+  private searchSubject = new Subject<string>();
 
   constructor(
     private cdr: ChangeDetectorRef,
     private taskService: TaskService
   ) {
-    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage);
+    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage, this.searchFilter);
   }
 
   ngOnInit() {
@@ -65,6 +67,19 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.loadTasks();
         this.cdr.markForCheck();
       });
+
+    // Configura debounce para a busca (aguarda 300ms após parar de digitar)
+    this.searchSubject
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((searchTerm) => {
+        this.searchFilter = searchTerm;
+        this.currentPage = 1; // Reset para primeira página quando buscar
+        this.loadTasks();
+      });
   }
 
   ngOnDestroy() {
@@ -73,7 +88,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   private loadTasks() {
-    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage);
+    this.tasksPaginated$ = this.taskService.getTasksPaginated(this.currentPage, this.perPage, this.searchFilter);
     this.cdr.markForCheck(); // Força change detection
   }
 
@@ -86,6 +101,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.perPage = perPage;
     this.currentPage = 1; // Reset to first page when changing perPage
     this.loadTasks();
+  }
+
+  onSearch(searchTerm: string) {
+    this.searchSubject.next(searchTerm);
+  }
+
+  onClearSearch() {
+    this.searchFilter = '';
+    this.searchSubject.next('');
   }
 
   /* exclusão da tarefa */

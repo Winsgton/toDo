@@ -44,10 +44,16 @@ export class TaskService {
   }
 
   /** Busca tarefas paginadas via API */
-  getTasksPaginated(page: number, perPage: number): Observable<PaginatedResponse<Task>> {
-    const params = new HttpParams()
+  getTasksPaginated(page: number, perPage: number, filtro?: string): Observable<PaginatedResponse<Task>> {
+    let params = new HttpParams()
       .set('page', page)
       .set('per_page', perPage);
+
+    // Adiciona o filtro se foi fornecido
+    if (filtro && filtro.trim()) {
+      params = params.set('filtro', filtro.trim());
+    }
+
     return this.http
       .get<PaginatedResponse<Task>>(`${this.tasksUrlBase}/task/listar`, { params })
       .pipe(

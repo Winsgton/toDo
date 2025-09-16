@@ -11,6 +11,31 @@
   </mat-card-content>
 </mat-card>
 
+<!-- Campo de busca -->
+<mat-card class="search-card" appearance="outlined">
+  <mat-card-content>
+    <mat-form-field class="search-field" appearance="outline">
+      <mat-label>Buscar tarefas</mat-label>
+      <input
+        matInput
+        placeholder="Digite para buscar..."
+        [(ngModel)]="searchFilter"
+        (input)="onSearch(searchInput.value)"
+        #searchInput>
+      <mat-icon matSuffix>search</mat-icon>
+      <button
+        *ngIf="searchFilter"
+        matSuffix
+        mat-icon-button
+        (click)="onClearSearch(); searchInput.value = ''"
+        type="button"
+        aria-label="Limpar busca">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+
 <!-- Card principal de cadastro de tarefas -->
 <mat-card class="task-card" appearance="outlined" *ngIf="(tasksPaginated$ | async) as paginatedTasks">
 

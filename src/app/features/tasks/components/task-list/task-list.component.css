@@ -5,6 +5,31 @@
   padding: 15px;
 }
 
+/* Card de busca */
+.search-card {
+  max-width: 70rem;
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #fce4e4;
+}
+
+/* Campo de busca */
+.search-field {
+  width: 100%;
+}
+
+.search-field .mat-mdc-form-field-focus-overlay {
+  background-color: #bb005d;
+}
+
+.search-field.mat-focused .mat-mdc-form-field-outline-thick {
+  color: #bb005d;
+}
+
+.search-field .mat-mdc-input-element::placeholder {
+  color: #9f5a55;
+}
+
 /* Faz o input ocupar toda a largura disponível */
 .full-width {
   flex: 1;
